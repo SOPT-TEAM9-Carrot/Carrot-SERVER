@@ -18,7 +18,7 @@ public class UserEntity {
     private String nickname;
 
     @Column(name = "image_url", nullable = false)
-    private String image;
+    private String imageUrl;
 
     @Column(nullable = false)
     private float degree;
