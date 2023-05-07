@@ -22,14 +22,4 @@ public class UserEntity {
 
     @Column(nullable = false)
     private float degree;
-
-    private UserEntity(String nickname, String image, float degree) {
-        this.nickname = nickname;
-        this.image = image;
-        this.degree = degree;
-    }
-
-    public static UserEntity newInstance(String nickname, String image, float degree) {
-        return new UserEntity(nickname, image, degree);
-    }
 }
