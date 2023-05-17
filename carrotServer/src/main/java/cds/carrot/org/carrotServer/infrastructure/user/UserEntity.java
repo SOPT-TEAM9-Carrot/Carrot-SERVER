@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@Entity
+@Entity(name = "user")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class UserEntity {
 
@@ -17,7 +17,7 @@ public class UserEntity {
     @Column(nullable = false)
     private String nickname;
 
-    @Column(nullable = false)
+    @Column(name = "image_url", nullable = false)
     private String image;
 
     @Column(nullable = false)
