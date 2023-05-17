@@ -18,7 +18,7 @@ public class UserEntity {
     @Id
     @Column(name = "user_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userId;
+    private Long id;
 
     @OneToMany(mappedBy = "review")
     @JsonIgnore

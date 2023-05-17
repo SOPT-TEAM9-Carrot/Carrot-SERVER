@@ -59,7 +59,7 @@ public class EmployerServiceImpl implements EmployerService {
                 .reviewerName(reviewEntity.getReviewerName())
                 .imageUrl(reviewEntity.getImageUrl())
                 .comment(reviewEntity.getComment())
-                .userId(reviewEntity.getUser().getUserId())
+                .userId(reviewEntity.getUser().getId())
                 .build();
     }
 }
