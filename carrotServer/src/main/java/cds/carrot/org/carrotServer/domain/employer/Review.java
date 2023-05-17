@@ -1,4 +1,4 @@
-package cds.carrot.org.carrotServer.domain.review;
+package cds.carrot.org.carrotServer.domain.employer;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,4 +12,6 @@ public class Review {
     private String comment;
 
     private String imageUrl;
+
+    private Long userId;
 }
