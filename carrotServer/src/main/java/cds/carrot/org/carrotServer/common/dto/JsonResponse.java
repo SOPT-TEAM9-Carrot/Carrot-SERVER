@@ -1,7 +1,5 @@
 package cds.carrot.org.carrotServer.common.dto;
 
-import cds.carrot.org.carrotServer.exception.ErrorType;
-import cds.carrot.org.carrotServer.exception.SuccessType;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

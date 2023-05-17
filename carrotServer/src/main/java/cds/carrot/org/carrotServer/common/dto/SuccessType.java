@@ -1,4 +1,4 @@
-package cds.carrot.org.carrotServer.exception;
+package cds.carrot.org.carrotServer.common.dto;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
