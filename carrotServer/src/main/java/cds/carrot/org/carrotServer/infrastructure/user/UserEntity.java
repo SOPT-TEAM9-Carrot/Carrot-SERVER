@@ -1,10 +1,12 @@
 package cds.carrot.org.carrotServer.infrastructure.user;
 
 import lombok.AccessLevel;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+@Getter
 @Entity(name = "user")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class UserEntity {
