@@ -20,7 +20,7 @@ public class UserEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(mappedBy = "review")
+    @OneToMany(mappedBy = "user")
     @JsonIgnore
     private List<ReviewEntity> reviewEntities = new ArrayList<>();
 
