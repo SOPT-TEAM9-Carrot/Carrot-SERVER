@@ -2,12 +2,14 @@ package cds.carrot.org.carrotServer.infrastructure.category;
 
 import cds.carrot.org.carrotServer.infrastructure.post.PostEntity;
 import lombok.AccessLevel;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
 @Entity(name = "category")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class CategoryEntity {

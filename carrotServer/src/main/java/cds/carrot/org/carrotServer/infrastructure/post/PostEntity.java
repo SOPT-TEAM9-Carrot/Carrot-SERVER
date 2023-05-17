@@ -1,13 +1,16 @@
 package cds.carrot.org.carrotServer.infrastructure.post;
 
 import cds.carrot.org.carrotServer.infrastructure.category.CategoryEntity;
+import cds.carrot.org.carrotServer.infrastructure.user.UserEntity;
 import lombok.AccessLevel;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
 @Entity(name = "post")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class PostEntity {
@@ -17,9 +20,9 @@ public class PostEntity {
     @Column(name = "post_id")
     private Long id;
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "user_id")
-//    private User user;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private UserEntity user;
 
     @Column(nullable = false)
     private String company;
@@ -45,8 +48,4 @@ public class PostEntity {
 
     @ManyToMany(mappedBy = "posts")
     private List<CategoryEntity> categories = new ArrayList<>();
-
-//    public static PostEntity newInstance(Post post) {
-//
-//    }
 }
