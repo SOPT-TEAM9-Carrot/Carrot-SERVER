@@ -25,7 +25,7 @@ public class EmployerController {
         }
 
         EmployerResponseDto responseDto = employerService.getUserWithReviews(userId, size);
-        return JsonResponse.success(SuccessType.READ_JOB_LIST_SUCCESS, responseDto);
+        return JsonResponse.success(SuccessType.READ_REVIEW_LIST_SUCCESS, responseDto);
 
     }
 
