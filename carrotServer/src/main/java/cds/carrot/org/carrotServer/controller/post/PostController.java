@@ -29,14 +29,14 @@ public class PostController {
     @GetMapping("/list")
     public JsonResponse getPostList(@RequestParam int size) {
         List<Post> posts = postService.getAll();
-        return JsonResponse.success(SuccessType.FIND_BOARD_SUCCESS,
+        return JsonResponse.success(SuccessType.READ_BOARD_LIST_SUCCESS,
                 PostListResponse.of(posts.subList(0, Math.min(size, posts.size()))));
     }
 
     @GetMapping("/{postId}")
     public JsonResponse getPost(@PathVariable Long postId) {
         PostResponse response = PostResponse.of(postService.getById(postId));
-        return JsonResponse.success(SuccessType.FIND_BOARD_SUCCESS, response);
+        return JsonResponse.success(SuccessType.READ_BOARD_SUCCESS, response);
     }
 
     @GetMapping("/recommend")
@@ -49,6 +49,6 @@ public class PostController {
                 findUser.getNickname(),
                 posts.subList(0, Math.min(posts.size(), size))
         );
-        return JsonResponse.success(SuccessType.FIND_BOARD_SUCCESS, response);
+        return JsonResponse.success(SuccessType.READ_BOARD_RECOMMEND_SUCCESS, response);
     }
 }
