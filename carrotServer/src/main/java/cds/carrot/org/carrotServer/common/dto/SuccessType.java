@@ -6,6 +6,10 @@ import org.springframework.http.HttpStatus;
 
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public enum SuccessType {
+    /**
+     * 200 OK
+     */
+    READ_JOB_LIST_SUCCESS(HttpStatus.FOUND, "알바 리스트 조회 성공"),
 
     /**
      * 201 CREATED
