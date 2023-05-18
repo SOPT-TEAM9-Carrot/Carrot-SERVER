@@ -31,18 +31,5 @@ public class EmployerResponseDto {
         this.reviews = reviews;
     }
 
-    public static EmployerResponseDto of(Long userId, String nickname, String imageUrl, float degree, List<Review> reviews) {
-        return new EmployerResponseDto(userId, nickname, imageUrl, degree, reviews);
-    }
-
-    @Override
-    public String toString() {
-        return "EmployerResponseDto{" +
-                "userId=" + userId +
-                ", nickname='" + nickname + '\'' +
-                ", imageUrl='" + imageUrl + '\'' +
-                ", degree=" + degree +
-                ", reviews=" + reviews +
-                '}';
     }
 }

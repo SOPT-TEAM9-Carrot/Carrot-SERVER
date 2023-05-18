@@ -29,15 +29,4 @@ public class ReviewEntity {
 
     @Column(name = "image_url", nullable = false)
     private String imageUrl;
-
-    @Override
-    public String toString() {
-        return "ReviewEntity{" +
-                "id=" + id +
-                ", user=" + user +
-                ", reviewerName='" + reviewerName + '\'' +
-                ", comment='" + comment + '\'' +
-                ", imageUrl='" + imageUrl + '\'' +
-                '}';
-    }
 }

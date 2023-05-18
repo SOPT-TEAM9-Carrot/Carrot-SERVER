@@ -26,7 +26,6 @@ public class EmployerController {
     public JsonResponse<EmployerResponseDto> getReviewList(HttpServletRequest request, @PathVariable Long userId, @RequestParam int size) {
         String auth = request.getHeader("Authorization");
         EmployerResponseDto responseDto = employerService.getUserWithReviews("1", userId, size);
-        logger.info("responseDto: {}", responseDto);
         return JsonResponse.success(SuccessType.READ_REVIEW_LIST_SUCCESS, responseDto);
     }
 

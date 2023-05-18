@@ -13,17 +13,13 @@ import cds.carrot.org.carrotServer.infrastructure.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class EmployerServiceImpl implements EmployerService {
-    private static final Logger logger = LoggerFactory.getLogger(EmployerServiceImpl.class);
 
     private final UserRepository userRepository;
     private final ReviewRepository reviewRepository;
@@ -41,8 +37,6 @@ public class EmployerServiceImpl implements EmployerService {
 
         List<ReviewEntity> reviewEntities = reviewRepository.findByUserId(userId);
 
-        logger.info("reviewEntities: {}", reviewEntities);
-
         UserEntity userEntity = userRepository.findById(userId)
                 .orElseThrow(() -> new NotFoundException(ErrorType.NOT_FOUND_USER_EXCEPTION, ErrorType.NOT_FOUND_USER_EXCEPTION.getMessage()));
 
@@ -50,17 +44,9 @@ public class EmployerServiceImpl implements EmployerService {
 
         List<Review> reviews = getLimitedReviews(reviewEntities, maxSize);
 
-        logger.info("reviews: {}", reviews);
-
         User user = fromUserEntityToUserMapper(userEntity);
 
-        return EmployerResponseDto.of(
-                user.getUserId(),
-                user.getNickname(),
-                user.getImageUrl(),
-                user.getDegree(),
-                reviews
-        );
+        return EmployerResponseDto.of(user, reviews);
     }
 
     private List<Review> getLimitedReviews(List<ReviewEntity> reviewEntityList, int maxSize) {
