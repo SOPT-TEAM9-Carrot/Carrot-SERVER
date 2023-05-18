@@ -1,11 +1,16 @@
 package cds.carrot.org.carrotServer.controller.employer.dto.response;
 
 import cds.carrot.org.carrotServer.domain.employer.Review;
+import cds.carrot.org.carrotServer.service.employer.EmployerServiceImpl;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
 @Getter
+@NoArgsConstructor
 public class EmployerResponseDto {
 
     private Long userId;
@@ -30,4 +35,14 @@ public class EmployerResponseDto {
         return new EmployerResponseDto(userId, nickname, imageUrl, degree, reviews);
     }
 
+    @Override
+    public String toString() {
+        return "EmployerResponseDto{" +
+                "userId=" + userId +
+                ", nickname='" + nickname + '\'' +
+                ", imageUrl='" + imageUrl + '\'' +
+                ", degree=" + degree +
+                ", reviews=" + reviews +
+                '}';
+    }
 }

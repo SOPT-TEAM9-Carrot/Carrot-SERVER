@@ -12,4 +12,13 @@ public class Review {
     private String comment;
 
     private String imageUrl;
+
+    @Override
+    public String toString() {
+        return "Review{" +
+                "reviewerName='" + reviewerName + '\'' +
+                ", comment='" + comment + '\'' +
+                ", imageUrl='" + imageUrl + '\'' +
+                '}';
+    }
 }

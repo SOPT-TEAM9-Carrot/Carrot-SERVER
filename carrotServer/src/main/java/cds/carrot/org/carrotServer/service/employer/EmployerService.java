@@ -4,5 +4,5 @@ import cds.carrot.org.carrotServer.controller.employer.dto.response.EmployerResp
 
 public interface EmployerService {
 
-    EmployerResponseDto getUserWithReviews(Long userId, int size);
+    EmployerResponseDto getUserWithReviews(String auth, Long userId, int size);
 }

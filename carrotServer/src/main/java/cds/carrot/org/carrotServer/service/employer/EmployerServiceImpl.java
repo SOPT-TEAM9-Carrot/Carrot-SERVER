@@ -13,32 +13,44 @@ import cds.carrot.org.carrotServer.infrastructure.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class EmployerServiceImpl implements EmployerService {
+    private static final Logger logger = LoggerFactory.getLogger(EmployerServiceImpl.class);
 
     private final UserRepository userRepository;
     private final ReviewRepository reviewRepository;
 
     @Override
     @Transactional
-    public EmployerResponseDto getUserWithReviews(Long userId, int size) {
+    public EmployerResponseDto getUserWithReviews(String auth, Long userId, int size) {
+        if (!("0".equals(auth) || "1".equals(auth))) {
+            throw new BadRequestException(ErrorType.REQUEST_HEADER_TOKEN_EXCEPTION, ErrorType.REQUEST_HEADER_TOKEN_EXCEPTION.getMessage());
+        }
+
         if (size < 0) {
             throw new BadRequestException(ErrorType.REQUEST_SIZE_EXCEPTION, ErrorType.REQUEST_SIZE_EXCEPTION.getMessage());
         }
 
+        List<ReviewEntity> reviewEntities = reviewRepository.findByUserId(userId);
+
+        logger.info("reviewEntities: {}", reviewEntities);
+
         UserEntity userEntity = userRepository.findById(userId)
                 .orElseThrow(() -> new NotFoundException(ErrorType.NOT_FOUND_USER_EXCEPTION, ErrorType.NOT_FOUND_USER_EXCEPTION.getMessage()));
-
-        List<ReviewEntity> reviewEntities = reviewRepository.findByUserId(userId);
 
         int maxSize = Math.min(size, reviewEntities.size());
 
         List<Review> reviews = getLimitedReviews(reviewEntities, maxSize);
+
+        logger.info("reviews: {}", reviews);
 
         User user = fromUserEntityToUserMapper(userEntity);
 
@@ -60,6 +72,7 @@ public class EmployerServiceImpl implements EmployerService {
 
     private User fromUserEntityToUserMapper(UserEntity userEntity) {
         return User.builder()
+                .userId(userEntity.getId())
                 .nickname(userEntity.getNickname())
                 .imageUrl(userEntity.getImageUrl())
                 .degree(userEntity.getDegree())

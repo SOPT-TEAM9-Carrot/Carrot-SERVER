@@ -21,9 +21,9 @@ public class ControllerExceptionAdvice {
      */
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ExceptionHandler({MethodArgumentNotValidException.class})
+    @ExceptionHandler(MethodArgumentNotValidException.class)
     protected JsonResponse handleMethodArgumentNotValidException(final MethodArgumentNotValidException e) {
-        FieldError fieldError = (FieldError) Objects.requireNonNull(e.getFieldError());
+        FieldError fieldError = Objects.requireNonNull(e.getFieldError());
         return JsonResponse.error(ErrorType.REQUEST_HEADER_TOKEN_EXCEPTION, String.format("%s. (%s)", fieldError.getDefaultMessage(), fieldError.getField()));
     }
 
@@ -32,7 +32,7 @@ public class ControllerExceptionAdvice {
      */
 
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    @ExceptionHandler({Exception.class})
+    @ExceptionHandler(Exception.class)
     protected JsonResponse<Object> handleException(final Exception e) {
         return JsonResponse.error(ErrorType.INTERNAL_SERVER_ERROR);
     }
@@ -41,8 +41,9 @@ public class ControllerExceptionAdvice {
      * api custom error
      */
 
-    @ExceptionHandler({ApiException.class})
-    protected ResponseEntity<JsonResponse> handleApiException(ApiException e) {
-        return ResponseEntity.status(e.getHttpStatus()).body(JsonResponse.error(e.getError(), e.getMessage()));
+    @ExceptionHandler(ApiException.class)
+    protected ResponseEntity<JsonResponse> handleCustomException(ApiException e) {
+        return ResponseEntity.status(e.getHttpStatus())
+                .body(JsonResponse.error(e.getError(), e.getMessage()));
     }
 }
