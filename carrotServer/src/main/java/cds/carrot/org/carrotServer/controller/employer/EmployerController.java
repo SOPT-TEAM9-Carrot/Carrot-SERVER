@@ -22,11 +22,15 @@ public class EmployerController {
 
     private final EmployerService employerService;
 
+    private static final String AOS = "1";
+    private static final String IOS = "2";
+    private static final String AUTHORIZATION = "Authorization";
+
     @GetMapping("/{userId}/reviews")
     @ResponseStatus(HttpStatus.FOUND)
     public JsonResponse<EmployerResponseDto> getReviewList(HttpServletRequest request, @PathVariable Long userId, @RequestParam int size) {
-        String auth = request.getHeader("Authorization");
-        if (!("1".equals(auth) || "2".equals(auth))) {
+        String auth = request.getHeader(AUTHORIZATION);
+        if (!(AOS.equals(auth) || IOS.equals(auth))) {
             throw new BadRequestException(ErrorType.REQUEST_HEADER_TOKEN_EXCEPTION, ErrorType.REQUEST_HEADER_TOKEN_EXCEPTION.getMessage());
         }
 
