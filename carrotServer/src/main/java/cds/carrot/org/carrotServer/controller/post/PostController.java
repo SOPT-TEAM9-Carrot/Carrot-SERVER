@@ -5,7 +5,11 @@ import cds.carrot.org.carrotServer.common.dto.SuccessType;
 import cds.carrot.org.carrotServer.domain.post.Post;
 import cds.carrot.org.carrotServer.service.post.PostService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpEntity;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.Enumeration;
 
 
 @RestController
@@ -14,9 +18,11 @@ import org.springframework.web.bind.annotation.*;
 public class PostController {
 
     private final PostService postService;
+//    private final UserService
 
     @GetMapping("/list")
-    public JsonResponse getPostList(@RequestParam(required = false) int size) {
+    public JsonResponse getPostList(@RequestParam int size) {
+
         return JsonResponse.success(SuccessType.FIND_BOARD_SUCCESS, postService.getAll());
     }
 
@@ -26,7 +32,8 @@ public class PostController {
     }
 
     @GetMapping("/recommend")
-    public JsonResponse getRecommendPostList(@RequestParam(required = false) int size) {
+    public JsonResponse getRecommendPostList(@RequestParam int size, HttpServletRequest request) {
+        String authorization = request.getHeader("Authorization");
         return JsonResponse.success(SuccessType.FIND_BOARD_SUCCESS, postService.getAll());
     }
 }
