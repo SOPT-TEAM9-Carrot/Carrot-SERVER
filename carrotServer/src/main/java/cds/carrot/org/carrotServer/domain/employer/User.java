@@ -1,7 +1,9 @@
-package cds.carrot.org.carrotServer.domain.user;
+package cds.carrot.org.carrotServer.domain.employer;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+
+import java.util.List;
 
 @Builder
 @AllArgsConstructor
@@ -12,4 +14,6 @@ public class User {
     private String imageUrl;
 
     private float degree;
+
+    private List<Review> reviews;
 }
