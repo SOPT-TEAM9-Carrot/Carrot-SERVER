@@ -11,7 +11,7 @@ public enum ErrorType {
      * 400 BAD REQUEST
      */
     REQUEST_HEADER_TOKEN_EXCEPTION(HttpStatus.BAD_REQUEST, "잘못된 헤더 토큰 값입니다."),
-    REQUEST_SIZE_EXCEPTION(HttpStatus.BAD_REQUEST, "리뷰를 요청하려면 'size' 매개변수가 필요합니다."),
+    REQUEST_SIZE_EXCEPTION(HttpStatus.BAD_REQUEST, "size가 음수입니다."),
 
     /**
      * 404 NOT FOUND
