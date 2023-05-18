@@ -2,7 +2,9 @@ package cds.carrot.org.carrotServer.controller.post.dto.response;
 
 import cds.carrot.org.carrotServer.domain.post.Post;
 import lombok.Builder;
+import lombok.Getter;
 
+@Getter
 @Builder
 public class RecommendPostResponse {
 

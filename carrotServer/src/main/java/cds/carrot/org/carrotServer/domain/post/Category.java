@@ -1,10 +1,9 @@
 package cds.carrot.org.carrotServer.domain.post;
 
-
 import lombok.AllArgsConstructor;
-import lombok.Builder;
+import lombok.Getter;
 
-@Builder
+@Getter
 @AllArgsConstructor
 public class Category {
 
