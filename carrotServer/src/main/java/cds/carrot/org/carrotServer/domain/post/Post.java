@@ -2,10 +2,12 @@ package cds.carrot.org.carrotServer.domain.post;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
 @Builder
 @AllArgsConstructor
 public class Post {
