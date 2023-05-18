@@ -12,6 +12,4 @@ public class Review {
     private String comment;
 
     private String imageUrl;
-
-    private Long userId;
 }
