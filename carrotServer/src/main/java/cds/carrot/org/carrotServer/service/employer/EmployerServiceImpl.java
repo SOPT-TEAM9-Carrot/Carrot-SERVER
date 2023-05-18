@@ -26,15 +26,7 @@ public class EmployerServiceImpl implements EmployerService {
 
     @Override
     @Transactional
-    public EmployerResponseDto getUserWithReviews(String auth, Long userId, int size) {
-        if (!("1".equals(auth) || "2".equals(auth))) {
-            throw new BadRequestException(ErrorType.REQUEST_HEADER_TOKEN_EXCEPTION, ErrorType.REQUEST_HEADER_TOKEN_EXCEPTION.getMessage());
-        }
-
-        if (size < 0) {
-            throw new BadRequestException(ErrorType.REQUEST_SIZE_EXCEPTION, ErrorType.REQUEST_SIZE_EXCEPTION.getMessage());
-        }
-
+    public EmployerResponseDto getUserWithReviews(Long userId, int size) {
         List<ReviewEntity> reviewEntities = reviewRepository.findByUserId(userId);
 
         UserEntity userEntity = userRepository.findById(userId)

@@ -42,9 +42,7 @@ public class PostController {
 
     @GetMapping("/recommend")
     public JsonResponse getRecommendPostList(@RequestParam int size, HttpServletRequest request) {
-        EmployerResponseDto findUser = employerService.getUserWithReviews(request.getHeader("Authorization"),
-                Long.parseLong(request.getHeader("Authorization")),
-                0);
+        EmployerResponseDto findUser = employerService.getUserWithReviews(Long.parseLong(request.getHeader("Authorization")), 0);
         List<Post> posts = postService.getAll();
         RecommendPostListResponse response = RecommendPostListResponse.of(
                 findUser.getNickname(),

@@ -1,8 +1,10 @@
 package cds.carrot.org.carrotServer.controller.employer;
 
+import cds.carrot.org.carrotServer.common.dto.ErrorType;
 import cds.carrot.org.carrotServer.common.dto.JsonResponse;
 import cds.carrot.org.carrotServer.common.dto.SuccessType;
 import cds.carrot.org.carrotServer.controller.employer.dto.response.EmployerResponseDto;
+import cds.carrot.org.carrotServer.exception.BadRequestException;
 import cds.carrot.org.carrotServer.service.employer.EmployerService;
 import cds.carrot.org.carrotServer.service.employer.EmployerServiceImpl;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +19,6 @@ import javax.servlet.http.HttpServletRequest;
 @RequiredArgsConstructor
 @RequestMapping("/employer")
 public class EmployerController {
-    private static final Logger logger = LoggerFactory.getLogger(EmployerServiceImpl.class);
 
     private final EmployerService employerService;
 
@@ -25,7 +26,15 @@ public class EmployerController {
     @ResponseStatus(HttpStatus.FOUND)
     public JsonResponse<EmployerResponseDto> getReviewList(HttpServletRequest request, @PathVariable Long userId, @RequestParam int size) {
         String auth = request.getHeader("Authorization");
-        EmployerResponseDto responseDto = employerService.getUserWithReviews(auth, userId, size);
+        if (!("1".equals(auth) || "2".equals(auth))) {
+            throw new BadRequestException(ErrorType.REQUEST_HEADER_TOKEN_EXCEPTION, ErrorType.REQUEST_HEADER_TOKEN_EXCEPTION.getMessage());
+        }
+
+        if (size < 0) {
+            throw new BadRequestException(ErrorType.REQUEST_SIZE_EXCEPTION, ErrorType.REQUEST_SIZE_EXCEPTION.getMessage());
+        }
+
+        EmployerResponseDto responseDto = employerService.getUserWithReviews(userId, size);
         return JsonResponse.success(SuccessType.READ_REVIEW_LIST_SUCCESS, responseDto);
     }
 
