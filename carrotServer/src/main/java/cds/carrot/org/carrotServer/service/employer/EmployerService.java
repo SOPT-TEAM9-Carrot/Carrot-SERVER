@@ -1,8 +1,13 @@
 package cds.carrot.org.carrotServer.service.employer;
 
-import cds.carrot.org.carrotServer.controller.employer.dto.response.EmployerResponse;
+import cds.carrot.org.carrotServer.domain.employer.Review;
+import cds.carrot.org.carrotServer.domain.employer.User;
+
+import java.util.List;
 
 public interface EmployerService {
 
-    EmployerResponse getUserWithReviews(Long userId, int size);
+    List<Review> getByUserId(Long userId);
+
+    User getById(Long userId);
 }

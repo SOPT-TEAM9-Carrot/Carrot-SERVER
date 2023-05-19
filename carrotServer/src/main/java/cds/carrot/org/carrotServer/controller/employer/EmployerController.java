@@ -35,8 +35,10 @@ public class EmployerController {
             throw new BadRequestException(ErrorType.REQUEST_SIZE_EXCEPTION, ErrorType.REQUEST_SIZE_EXCEPTION.getMessage());
         }
 
-        EmployerResponse responseDto = employerService.getUserWithReviews(userId, size);
-        return JsonResponse.success(SuccessType.READ_REVIEW_LIST_SUCCESS, responseDto);
+        List<Review> reviews = employerService.getByUserId(userId);
+
+        EmployerResponse response = EmployerResponse.of(employerService.getById(userId), reviews.subList(0, Math.min(size, reviews.size())));
+        return JsonResponse.success(SuccessType.READ_REVIEW_LIST_SUCCESS, response);
     }
 
 }
