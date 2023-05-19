@@ -5,6 +5,7 @@ import cds.carrot.org.carrotServer.common.dto.JsonResponse;
 import cds.carrot.org.carrotServer.exception.ApiException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
@@ -25,7 +26,7 @@ public class ControllerExceptionAdvice {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     protected JsonResponse handleMethodArgumentNotValidException(final MethodArgumentNotValidException e) {
         FieldError fieldError = Objects.requireNonNull(e.getFieldError());
-        return JsonResponse.error(ErrorType.VALIDATION_REQUEST_MISSING_EXCEPTION, String.format("%s. (%s)", fieldError.getDefaultMessage(), fieldError.getField()));
+        return JsonResponse.error(ErrorType.VALIDATION_REQUEST_MISSING_EXCEPTION, String.format("%s", fieldError.getDefaultMessage(), fieldError.getField()));
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
