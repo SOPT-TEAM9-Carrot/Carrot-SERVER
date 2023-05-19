@@ -12,6 +12,8 @@ import java.util.List;
 @AllArgsConstructor
 public class Post {
 
+    private Long postId;
+
     private String company;
 
     private String title;
