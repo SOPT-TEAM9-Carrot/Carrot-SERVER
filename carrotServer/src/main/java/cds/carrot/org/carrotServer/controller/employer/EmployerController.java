@@ -9,6 +9,7 @@ import cds.carrot.org.carrotServer.exception.BadRequestException;
 import cds.carrot.org.carrotServer.service.employer.EmployerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,8 +23,10 @@ public class EmployerController {
 
     @GetMapping("/{userId}/reviews")
     @ResponseStatus(HttpStatus.FOUND)
-    public JsonResponse<EmployerResponse> getReviewList(@PathVariable Long userId, @RequestParam int size) {
-        if (size < 0) {
+    public JsonResponse<EmployerResponse> getReviewList(@PathVariable Long userId, @RequestParam(required = false) Integer size) {
+        if (ObjectUtils.isEmpty(size)) {
+            throw new BadRequestException(ErrorType.VALIDATION_REQUEST_MISSING_EXCEPTION);
+        } else if (size < 0) {
             throw new BadRequestException(ErrorType.REQUEST_SIZE_EXCEPTION);
         }
         List<Review> reviews = employerService.getByUserId(userId);

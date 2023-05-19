@@ -13,6 +13,8 @@ import cds.carrot.org.carrotServer.service.employer.EmployerService;
 import cds.carrot.org.carrotServer.service.post.PostService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.util.ObjectUtils;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -31,8 +33,10 @@ public class PostController {
     private static final String AUTHORIZATION = "Authorization";
 
     @GetMapping("/list")
-    public JsonResponse getPostList(@RequestParam int size) {
-        if (size < 0) {
+    public JsonResponse getPostList(@RequestParam(required = false) Integer size) {
+        if (ObjectUtils.isEmpty(size)) {
+            throw new BadRequestException(ErrorType.VALIDATION_REQUEST_MISSING_EXCEPTION);
+        } else if (size < 0) {
             throw new BadRequestException(ErrorType.REQUEST_SIZE_EXCEPTION);
         }
         List<Post> posts = postService.getAll();
@@ -47,8 +51,10 @@ public class PostController {
     }
 
     @GetMapping("/recommend")
-    public JsonResponse getRecommendPostList(@RequestParam int size, HttpServletRequest request) {
-        if (size < 0) {
+    public JsonResponse getRecommendPostList(@RequestParam(required = false) Integer size, HttpServletRequest request) {
+        if (ObjectUtils.isEmpty(size)) {
+            throw new BadRequestException(ErrorType.VALIDATION_REQUEST_MISSING_EXCEPTION);
+        } else if (size < 0) {
             throw new BadRequestException(ErrorType.REQUEST_SIZE_EXCEPTION);
         }
         User findUser = employerService.getById(Long.parseLong(request.getHeader(AUTHORIZATION)));
