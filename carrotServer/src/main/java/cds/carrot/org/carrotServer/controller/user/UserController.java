@@ -21,6 +21,6 @@ public class UserController {
     @PostMapping("/profile")
     public JsonResponse postUserProfile(@RequestBody CreateUserProfileRequest request) {
         CreateUserProfileResponse response = CreateUserProfileResponse.of(request);
-        return JsonResponse.success(SuccessType.SIGNUP_SUCCESS, response);
+        return JsonResponse.success(SuccessType.CREATE_PROFILE_SUCCESS, response);
     }
 }
