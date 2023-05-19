@@ -17,7 +17,8 @@ public enum SuccessType {
     /**
      * 201 CREATED
      */
-    CREATE_PROFILE_SUCCESS(HttpStatus.CREATED, "프로필 등록 성공"),
+    SIGNUP_SUCCESS(HttpStatus.CREATED, "회원가입이 완료됐습니다."),
+    CREATE_PROFILE_SUCCESS(HttpStatus.CREATED, "프로필 생성을 완료됐습니다."),
     ;
 
     private final HttpStatus httpStatus;
