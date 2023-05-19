@@ -32,7 +32,7 @@ public class EmployerController {
         }
 
         if (size < 0) {
-            throw new BadRequestException(ErrorType.REQUEST_SIZE_EXCEPTION, ErrorType.REQUEST_SIZE_EXCEPTION.getMessage());
+            throw new BadRequestException(ErrorType.REQUEST_SIZE_EXCEPTION);
         }
 
         List<Review> reviews = employerService.getByUserId(userId);

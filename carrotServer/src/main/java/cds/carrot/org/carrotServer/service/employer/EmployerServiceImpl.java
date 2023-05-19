@@ -33,7 +33,7 @@ public class EmployerServiceImpl implements EmployerService {
     @Override
     public User getById(Long userId) {
         UserEntity userEntity = userRepository.findById(userId)
-                .orElseThrow(() -> new NotFoundException(ErrorType.NOT_FOUND_USER_EXCEPTION, ErrorType.NOT_FOUND_USER_EXCEPTION.getMessage()));
+                .orElseThrow(() -> new NotFoundException(ErrorType.NOT_FOUND_USER_EXCEPTION));
         return fromUserEntityToUserMapper(userEntity);
     }
 

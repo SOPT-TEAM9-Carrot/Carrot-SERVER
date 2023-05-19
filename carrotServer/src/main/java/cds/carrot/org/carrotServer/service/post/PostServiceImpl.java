@@ -31,7 +31,7 @@ public class PostServiceImpl implements PostService {
     @Override
     public Post getById(Long postId) {
         PostEntity postEntity = postRepository.findById(postId)
-                .orElseThrow(() -> new NotFoundException(ErrorType.NOT_FOUND_POST_EXCEPTION, ErrorType.NOT_FOUND_POST_EXCEPTION.getMessage()));
+                .orElseThrow(() -> new NotFoundException(ErrorType.NOT_FOUND_POST_EXCEPTION));
         return fromPostEntityToPostMapper(postEntity);
     }
 
