@@ -11,11 +11,11 @@ import java.util.List;
 @AllArgsConstructor
 public class User {
 
+    private Long userId;
+
     private String nickname;
 
     private String imageUrl;
 
     private float degree;
-
-    private List<Review> reviews;
 }

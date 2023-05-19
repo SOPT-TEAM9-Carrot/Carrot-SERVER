@@ -2,6 +2,7 @@ package cds.carrot.org.carrotServer.controller.post;
 
 import cds.carrot.org.carrotServer.common.dto.JsonResponse;
 import cds.carrot.org.carrotServer.common.dto.SuccessType;
+import cds.carrot.org.carrotServer.controller.employer.dto.response.EmployerResponseDto;
 import cds.carrot.org.carrotServer.controller.post.dto.response.PostListResponse;
 import cds.carrot.org.carrotServer.controller.post.dto.response.PostResponse;
 import cds.carrot.org.carrotServer.controller.post.dto.response.RecommendPostListResponse;
@@ -41,9 +42,7 @@ public class PostController {
 
     @GetMapping("/recommend")
     public JsonResponse getRecommendPostList(@RequestParam int size, HttpServletRequest request) {
-        User findUser = employerService.getUserWithReviews(
-                Long.parseLong(request.getHeader("Authorization")),
-                0);
+        EmployerResponseDto findUser = employerService.getUserWithReviews(Long.parseLong(request.getHeader("Authorization")), 0);
         List<Post> posts = postService.getAll();
         RecommendPostListResponse response = RecommendPostListResponse.of(
                 findUser.getNickname(),

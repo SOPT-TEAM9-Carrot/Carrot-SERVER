@@ -2,7 +2,9 @@ package cds.carrot.org.carrotServer.domain.employer;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 
+@Getter
 @Builder
 @AllArgsConstructor
 public class Review {
@@ -13,5 +15,4 @@ public class Review {
 
     private String imageUrl;
 
-    private Long userId;
 }
