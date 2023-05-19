@@ -10,7 +10,6 @@ import java.util.List;
 
 @Getter
 @Builder
-@AllArgsConstructor
 public class EmployerResponse {
 
     private Long userId;
@@ -18,7 +17,6 @@ public class EmployerResponse {
     private String imageUrl;
     private float degree;
     private List<Review> reviews;
-
 
     public static EmployerResponse of(User user, List<Review> reviews) {
         return EmployerResponse.builder()
