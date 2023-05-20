@@ -11,16 +11,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/users")
 public class UserController {
 
-    private final EmployerService employerService;
-
     @PostMapping("/profile")
-    public JsonResponse postUserProfile(@RequestBody CreateUserProfileRequest request) {
+    public JsonResponse postUserProfile(@Valid @RequestBody CreateUserProfileRequest request) {
         CreateUserProfileResponse response = CreateUserProfileResponse.of(request);
-        return JsonResponse.success(SuccessType.SIGNUP_SUCCESS, response);
+        return JsonResponse.success(SuccessType.CREATE_PROFILE_SUCCESS, response);
     }
 }

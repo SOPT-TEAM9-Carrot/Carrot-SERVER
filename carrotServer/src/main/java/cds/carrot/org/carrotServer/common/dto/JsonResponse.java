@@ -13,7 +13,7 @@ import lombok.RequiredArgsConstructor;
 @JsonInclude(Include.NON_NULL)
 public class JsonResponse<T> {
 
-    private final int code;
+    private final int status;
     private final boolean success;
     private final String message;
     private T data;
