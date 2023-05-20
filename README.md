@@ -3,10 +3,10 @@
   <br><br>
   
 ## 팀원
-이영주 | 유서린 |
+유서린 | 장유진 |
 :---------:|:----------:|
-[2zerozu](https://github.com/2zerozu) | [SeorinY](https://github.com/SeorinY) | 
-User, Review 관련 기능 | Post, Category 관련 기능 |
+[SeorinY](https://github.com/SeorinY) | [jinchiim](https://github.com/jinchiim) | 
+관련 기능 | 관련 기능 |
 
 <br><br>
 
