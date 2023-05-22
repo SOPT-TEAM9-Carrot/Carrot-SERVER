@@ -3,13 +3,13 @@ package cds.carrot.org.carrotServer.common;
 import cds.carrot.org.carrotServer.common.dto.ErrorType;
 import cds.carrot.org.carrotServer.exception.BadRequestException;
 import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
+import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @Component
-public class CustomInterceptor implements org.springframework.web.servlet.HandlerInterceptor {
+public class CustomInterceptor implements HandlerInterceptor {
     private static final String AOS = "1";
     private static final String IOS = "2";
     private static final String AUTHORIZATION = "Authorization";
