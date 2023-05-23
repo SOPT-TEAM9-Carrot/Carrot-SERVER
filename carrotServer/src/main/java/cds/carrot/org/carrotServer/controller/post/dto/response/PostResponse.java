@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 @Builder
 public class PostResponse {
 
+    Long userId;
     String image;
     List<String> categories = new ArrayList<>();
     String title;
@@ -22,6 +23,7 @@ public class PostResponse {
 
     public static PostResponse of(Post post) {
         return PostResponse.builder()
+                .userId(post.getUserId())
                 .image(post.getImageUrl())
                 .categories(post
                         .getCategories()
@@ -34,4 +36,5 @@ public class PostResponse {
                 .address(post.getAddress())
                 .build();
     }
+
 }

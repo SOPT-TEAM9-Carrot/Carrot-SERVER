@@ -37,6 +37,7 @@ public class PostServiceImpl implements PostService {
 
     private Post fromPostEntityToPostMapper(PostEntity postEntity) {
         return Post.builder()
+                .userId(postEntity.getUser().getId())
                 .postId(postEntity.getId())
                 .company(postEntity.getCompany())
                 .title(postEntity.getTitle())

@@ -8,6 +8,7 @@ import lombok.Getter;
 @Builder
 public class RecommendPostResponse {
 
+    Long userId;
     Long postId;
     String title;
     String image;
@@ -15,10 +16,12 @@ public class RecommendPostResponse {
 
     public static RecommendPostResponse of (Post post) {
         return RecommendPostResponse.builder()
+                .userId(post.getUserId())
                 .postId(post.getPostId())
                 .title(post.getTitle())
                 .image(post.getImageUrl())
                 .monthlyWage(post.getMonthlyWage())
                 .build();
     }
+
 }
