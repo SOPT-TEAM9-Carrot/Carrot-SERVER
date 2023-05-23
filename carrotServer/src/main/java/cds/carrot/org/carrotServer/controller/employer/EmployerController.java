@@ -22,7 +22,6 @@ public class EmployerController {
     private final EmployerService employerService;
 
     @GetMapping("/{userId}/reviews")
-    @ResponseStatus(HttpStatus.FOUND)
     public JsonResponse<EmployerResponse> getReviewList(@PathVariable Long userId, @RequestParam(required = false) Integer size) {
         if (ObjectUtils.isEmpty(size)) {
             throw new BadRequestException(ErrorType.VALIDATION_REQUEST_MISSING_EXCEPTION);
